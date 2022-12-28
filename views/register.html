@@ -22,7 +22,10 @@
     <main class="main container">
         <div class="form">
             <h1 class="form-title text-center">Account Registration</h1>
-            <form action="/user/register" method="post" class="form-body">
+            {{if .error }}
+            <p class="form-error"> {{ .error }}</p>
+            {{ end }}
+            <form action="/accounts/register" method="post" class="form-body">
                 <div class="form-field">
                     <label for="fullname">Full Name</label>
                     <input type="text" name="fullname" placeholder="Full Name" id="fullname">
@@ -40,7 +43,7 @@
                     <input type="password" name="password" placeholder="Password" id="password">
                 </div>
                 <div class="form-field">
-                    <input type="submit" aria-label="Register" class="btn btn-outline-primary btn-extended" value="Register">
+                    <input type="submit" aria-label="Register" class="btn btn-outline-primary btn-extended">
                 </div>
             </form>
             <p class="text-center form-other">Already registered? <a href="/accounts/login">Login</a></p>

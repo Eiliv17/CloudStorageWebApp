@@ -12,7 +12,7 @@
     --color-primary: hsl(243, 100%, 69%);
     --color-primary-dark: hsl(243, 51%, 53%);
     --color-background: hsl(0, 0%, 15%);
-    
+    --color-warning: hsl(0, 100%, 50%);
     
     --color-headings: hsl(0, 0%, 95%);
     --color-paragraphs: hsl(0, 0%, 80%);
@@ -241,4 +241,8 @@ input{
     display: flex;
     flex-direction: column;
     margin: 1.5rem 0;
+}
+
+.form-error{
+    color: var(--color-warning);
 }
