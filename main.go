@@ -19,9 +19,15 @@ func main() {
 	})
 
 	r.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", gin.H{
-			"title": "main title",
-		})
+		c.HTML(http.StatusOK, "index.html", gin.H{})
+	})
+
+	r.GET("/accounts/register", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "register.html", gin.H{})
+	})
+
+	r.GET("/accounts/login", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "login.html", gin.H{})
 	})
 
 	r.Run() // listen and serve on 0.0.0.0:8080
