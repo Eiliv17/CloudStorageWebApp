@@ -3,8 +3,14 @@ package main
 import (
 	"net/http"
 
+	"github.com/Eiliv17/CloudStorageWebApp/initializers"
 	"github.com/gin-gonic/gin"
 )
+
+func init() {
+	initializers.LoadEnvVariables()
+	initializers.LoadDatabase()
+}
 
 func main() {
 	r := gin.Default()
