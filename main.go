@@ -10,6 +10,7 @@ func main() {
 	r := gin.Default()
 
 	r.LoadHTMLGlob("views/*")
+	r.Static("/public", "./public")
 
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(200, gin.H{
