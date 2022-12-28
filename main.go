@@ -46,7 +46,7 @@ func main() {
 		})
 
 		// handles the post request for logging in an account
-		// racc.POST("/login", )
+		racc.POST("/login", controllers.Login)
 	}
 
 	r.Run() // listen and serve on 0.0.0.0:8080

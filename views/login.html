@@ -22,6 +22,9 @@
     <main class="main container">
         <div class="form">
             <h1 class="form-title text-center">Account Login</h1>
+            {{ if .error}}
+            <p class="form-error">{{ .error }}</p>
+            {{ end }}
             <form action="/accounts/login" method="post" class="form-body">
                 <div class="form-field">
                     <label for="email">Email</label>
