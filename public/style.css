@@ -1,6 +1,10 @@
-*, *::before, **::after {
-    margin: 0;
+/* imports */
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700&display=swap');
+
+/* base styles */
+*, *::after, *::before {
     padding: 0;
+    margin: 0;
     box-sizing: border-box;
 }
 
@@ -14,6 +18,10 @@
     --color-paragraphs: hsl(0, 0%, 80%);
 }
 
+.container{
+    max-width: 1520px;
+    margin: 0 auto;
+}
 
 /* Typography */
 
@@ -24,10 +32,15 @@ html {
 body{
     font-size: 1.6rem;
     color: var(--color-paragraphs);
+    font-family: 'Nunito', sans-serif;
+}
+
+p {
+    max-width: 50ch;
 }
 
 h1,h2,h3,h4,h5,h6{
-    color: white;
+    color: var(--color-headings);
 }
 
 h1 {
@@ -42,10 +55,23 @@ h3 {
     font-size: 4rem;
 }
 
+.text-left {
+    text-align: left;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
 /* Page default layout */
 
 body{
     background: var(--color-background);
+    margin: 0;
 }
 
 
@@ -54,14 +80,22 @@ body{
 a {
     text-decoration: none;
     color: var(--color-headings);
+    font-weight: 600;
+    font-size: 1.6rem;
 }
 
 
 /* Button */
 
 .btn {
+    display: inline-block;
     padding: 1rem 2rem;
     border-radius: 10px;
+    outline: none;
+}
+
+.btn-extended {
+    width: 100%;
 }
 
 .btn-primary{
@@ -83,4 +117,70 @@ a {
 
 .btn-outline-primary:hover{
     background: var(--color-primary);
+}
+
+
+/* Header */
+
+.header {
+    padding: 1rem 2rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: fixed;
+    width: 100%;
+}
+
+.logo {
+    font-size: 3rem;
+    margin: 0;
+}
+
+.nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-link {
+    display: inline-block;
+    padding: 1rem;
+    font-weight: 500;
+    transition: border-bottom 0.2s linear, color 0.2s linear;
+}
+
+.nav-link:hover {
+    border-bottom: 1px solid var(--color-primary);
+    color: var(--color-primary)
+}
+
+
+/* Main */
+
+.main{
+    padding: 2rem;
+    height: 100vh;
+}
+
+/* Hero section */
+
+.hero {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    height: 100%;
+}
+
+
+.hero-logo img {
+    width: 500px;
+    height: auto;
+}
+
+.hero-heading {
+    font-size: 4rem;
+}
+
+.hero-description{
+    margin-bottom: 2rem;
 }
