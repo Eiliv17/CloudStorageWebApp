@@ -19,6 +19,25 @@
             </ul>
         </nav>
     </header>
+    <main class="main container">
+        <div class="form">
+            <h1 class="form-title text-center">Account Login</h1>
+            <form action="/accounts/login" method="post" class="form-body">
+                <div class="form-field">
+                    <label for="email">Email</label>
+                    <input type="email" name="email" placeholder="Email" id="email">
+                </div>
+                <div class="form-field">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" placeholder="Password" id="password">
+                </div>
+                <div class="form-field">
+                    <input type="submit" aria-label="Login" class="btn btn-outline-primary btn-extended" value="Login">
+                </div>
+            </form>
+            <p class="form-other text-center">Don't have an account? <a href="/register.html">Sign up</a></p>
+        </div>
+    </main>
     
 </body>
 </html>

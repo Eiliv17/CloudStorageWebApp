@@ -11,7 +11,7 @@
 :root{
     --color-primary: hsl(243, 100%, 69%);
     --color-primary-dark: hsl(243, 51%, 53%);
-    --color-background: hsl(0, 0%, 20%);
+    --color-background: hsl(0, 0%, 15%);
     
     
     --color-headings: hsl(0, 0%, 95%);
@@ -84,6 +84,38 @@ a {
     font-size: 1.6rem;
 }
 
+/* Inputs */
+
+input, label{
+    display: block;
+    color: var(--color-headings);
+}
+
+label{
+    font-size: 1.6rem;
+    margin-bottom: 0.3rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"]{
+    padding: 1rem 2rem;
+    border-radius: 10px;
+    border: 1px solid gray;
+    background: none;
+    outline: none;
+}
+
+input{
+    font-size: 1.6rem;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 600;
+}
+
+::-webkit-calendar-picker-indicator{
+    display: none;
+}
 
 /* Button */
 
@@ -183,4 +215,30 @@ a {
 
 .hero-description{
     margin-bottom: 2rem;
+}
+
+/* Form */
+
+.form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.form-title {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.form-body {
+    padding: 1rem;
+    width: 300px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    margin: 1.5rem 0;
 }
