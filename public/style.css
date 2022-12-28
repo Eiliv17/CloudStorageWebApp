@@ -1,0 +1,47 @@
+*, *::before, **::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --color-background: hsl(0, 0%, 20%);
+
+    
+    --color-headings: hsl(0, 0%, 95%);
+    --color-paragraphs: hsl(0, 0%, 80%);
+}
+
+
+/* Typography */
+
+html {
+    font-size: 62.5%;
+}
+
+body{
+    font-size: 1.6rem;
+    color: var(--color-paragraphs);
+}
+
+h1,h2,h3,h4,h5,h6{
+    color: white;
+}
+
+h1 {
+    font-size: 7rem;
+}
+
+h2 {
+    font-size: 5.5rem;
+}
+
+h3 {
+    font-size: 4rem;
+}
+
+/* Page default layout */
+
+body{
+    background: var(--color-background);
+}
