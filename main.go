@@ -5,6 +5,7 @@ import (
 
 	"github.com/Eiliv17/CloudStorageWebApp/controllers"
 	"github.com/Eiliv17/CloudStorageWebApp/initializers"
+	"github.com/Eiliv17/CloudStorageWebApp/middlewares"
 	"github.com/gin-gonic/gin"
 )
 
@@ -48,6 +49,10 @@ func main() {
 		// handles the post request for logging in an account
 		racc.POST("/login", controllers.Login)
 	}
+
+	r.GET("/dashboard", middlewares.RequireAuth, func(c *gin.Context) {
+		c.HTML(http.StatusOK, "dashboard.html", gin.H{})
+	})
 
 	r.Run() // listen and serve on 0.0.0.0:8080
 }
