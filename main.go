@@ -20,12 +20,6 @@ func main() {
 	r.LoadHTMLGlob("views/*")
 	r.Static("/public", "./public")
 
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"message": "pong",
-		})
-	})
-
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "index.html", gin.H{})
 	})
@@ -50,9 +44,14 @@ func main() {
 		racc.POST("/login", controllers.Login)
 	}
 
-	r.GET("/dashboard", middlewares.RequireAuth, func(c *gin.Context) {
-		c.HTML(http.StatusOK, "dashboard.html", gin.H{})
-	})
+	rfile := r.Group("/file")
+	{
+		rfile.GET("/:id", middlewares.RequireAuth, controllers.Download)
+
+		rfile.POST("", middlewares.RequireAuth, controllers.Upload)
+	}
+
+	r.GET("/dashboard", middlewares.RequireAuth, controllers.Dashboard)
 
 	r.GET("/logout", func(c *gin.Context) {
 		c.SetSameSite(http.SameSiteLaxMode)

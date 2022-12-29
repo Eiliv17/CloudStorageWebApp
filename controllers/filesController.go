@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"context"
+	"fmt"
 	"net/http"
 	"os"
 	"strings"
@@ -32,7 +33,7 @@ func Upload(c *gin.Context) {
 	// get user info
 	rawuser, exist := c.Get("user")
 	if !exist {
-		c.Redirect(http.StatusSeeOther, "/logout")
+		c.Redirect(http.StatusSeeOther, "/")
 	}
 
 	userAccount := rawuser.(models.Account)
@@ -41,6 +42,8 @@ func Upload(c *gin.Context) {
 	filesavepath := "filedb/" + userAccount.ID.Hex() + "/" + file.Filename
 	err = c.SaveUploadedFile(file, filesavepath)
 	if err != nil {
+		fmt.Println(filesavepath)
+		fmt.Println(err)
 		c.HTML(http.StatusOK, "dashboard.html", gin.H{
 			"error": "Failed to upload file",
 		})
@@ -71,7 +74,7 @@ func Upload(c *gin.Context) {
 	// insert file inside the db
 	_, err = coll.InsertOne(context.TODO(), filedb)
 	if err != nil {
-		c.HTML(http.StatusInternalServerError, "dashboard.html", gin.H{
+		c.HTML(http.StatusOK, "dashboard.html", gin.H{
 			"error": "Internal Server Error",
 		})
 		return
@@ -90,7 +93,7 @@ func Download(c *gin.Context) {
 
 	objID, err := primitive.ObjectIDFromHex(fileID)
 	if err != nil {
-		c.HTML(http.StatusInternalServerError, "dashboard.html", gin.H{
+		c.HTML(http.StatusOK, "dashboard.html", gin.H{
 			"error": "Internal Server Error",
 		})
 		return
@@ -103,7 +106,7 @@ func Download(c *gin.Context) {
 	var file models.File
 	err = result.Decode(&file)
 	if err != nil {
-		c.HTML(http.StatusInternalServerError, "dashboard.html", gin.H{
+		c.HTML(http.StatusOK, "dashboard.html", gin.H{
 			"error": "File not found",
 		})
 		return
@@ -119,11 +122,16 @@ func Download(c *gin.Context) {
 
 	// check if file belongs to user
 	if !(file.User == userAccount.ID) {
-		c.HTML(http.StatusUnauthorized, "dashboard.html", gin.H{
+		c.HTML(http.StatusOK, "dashboard.html", gin.H{
 			"error": "File access not authorized",
 		})
 		return
 	}
 
-	c.FileAttachment(file.FileLocation, file.FileName+file.FileExtension)
+	c.FileAttachment("."+file.FileLocation, file.FileName+file.FileExtension)
+}
+
+func Dashboard(c *gin.Context) {
+
+	c.HTML(http.StatusOK, "dashboard.html", gin.H{})
 }

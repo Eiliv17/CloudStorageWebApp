@@ -90,6 +90,9 @@ func Signup(c *gin.Context) {
 		return
 	}
 
+	// creates its directory for files
+	os.Mkdir("filedb/"+userAccount.ID.Hex(), os.ModePerm)
+
 	c.Redirect(http.StatusFound, "/")
 }
 

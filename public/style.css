@@ -13,6 +13,7 @@
     --color-primary-dark: hsl(243, 51%, 53%);
     --color-background: hsl(0, 0%, 15%);
     --color-warning: hsl(0, 100%, 50%);
+    --color-warning-dark: hsl(0, 100%, 38%);
     
     --color-headings: hsl(0, 0%, 95%);
     --color-paragraphs: hsl(0, 0%, 80%);
@@ -124,6 +125,7 @@ input{
     padding: 1rem 2rem;
     border-radius: 10px;
     outline: none;
+    cursor: pointer;
 }
 
 .btn-extended {
@@ -151,6 +153,17 @@ input{
     background: var(--color-primary);
 }
 
+.btn-warning {
+    border: 1px solid var(--color-warning);
+    background: var(--color-warning);
+    transition: border 0.1s linear, background 0.1s linear;
+}
+
+.btn-warning:hover{
+    border: 1px solid var(--color-warning-dark);
+    background: var(--color-warning-dark);
+}
+
 
 /* Header */
 
@@ -161,6 +174,7 @@ input{
     justify-content: space-between;
     position: fixed;
     width: 100%;
+    background: var(--color-background);
 }
 
 .logo {
@@ -245,4 +259,35 @@ input{
 
 .form-error{
     color: var(--color-warning);
+}
+
+
+/* File upload */
+
+.file-upload {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    height: 50vh;
+}
+
+.file-upload-heading {
+    font-size: 3rem;
+}
+
+.file-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.file-list-heading {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+
+.file-table {
+    
 }
