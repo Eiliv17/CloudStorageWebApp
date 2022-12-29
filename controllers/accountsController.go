@@ -158,6 +158,6 @@ func Login(c *gin.Context) {
 	c.SetSameSite(http.SameSiteLaxMode)
 	c.SetCookie("Authorization", tokenString, 3600, "", "", false, true)
 
-	// send the JWT token
-	c.Redirect(http.StatusFound, "/")
+	// redirects to dashboard
+	c.Redirect(http.StatusFound, "/dashboard")
 }

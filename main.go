@@ -54,5 +54,11 @@ func main() {
 		c.HTML(http.StatusOK, "dashboard.html", gin.H{})
 	})
 
+	r.GET("/logout", func(c *gin.Context) {
+		c.SetSameSite(http.SameSiteLaxMode)
+		c.SetCookie("Authorization", "", 0, "", "", false, true)
+		c.Redirect(http.StatusSeeOther, "/")
+	})
+
 	r.Run() // listen and serve on 0.0.0.0:8080
 }
