@@ -81,7 +81,7 @@ Variable                    | Description
 ---                         | ---
 PORT                        | The HTTP server port
 MONGODB_URI                 | The URI for connecting to your MongoDB server
-DB_NAME                     | The name of the database (inside MongoDB) where you want to store the users and posts
+DB_NAME                     | The name of the database (inside MongoDB) where you want to store the users and files
 HMAC_SECRET                 | The HMAC secret string
 
 Here's an example of the .env file:
