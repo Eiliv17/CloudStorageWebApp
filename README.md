@@ -72,6 +72,7 @@ You need to have MongoDB installed on your machine, if you don't have it install
 This link is for the community version of MongoDB, once you've completed the installation process, it should be already up and running.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 ### .env File
 In the root of your project folder you also need to create a .env file which will load the environment variables that are needed for the web app to work. 
 
