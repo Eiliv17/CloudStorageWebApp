@@ -33,6 +33,7 @@
                 {{ end }}
             </div>
         </section>
+        {{ if .files }}
         <section class="file-list text-center">
             <h1 class="file-list-heading">Your files</h1>
             <table class="file-table">
@@ -47,12 +48,13 @@
                     </tr>
                 </thead>
                 <tbody>
+                    {{range $i, $val := .files}}
                     <tr>
-                        <td>#1</td>
-                        <td>Image</td>
-                        <td>png</td>
-                        <td>10/11/2022</td>
-                        <td><a href="" class="btn btn-primary">Download</a></td>
+                        <td>{{ $i }}</td>
+                        <td>{{ $val.FileName }}</td>
+                        <td>{{ $val.FileExtension }}</td>
+                        <td>{{ $val.InsertionDate.Format "2006-01-02" }}</td>
+                        <td><a href="/file/{{ $val.FileID.Hex }}" class="btn btn-primary">Download</a></td>
                         <td>
                             <form action="#" method="post">
                                 <input type="hidden" name="id" value="fileid">
@@ -60,126 +62,11 @@
                             </form>
                         </td>
                     </tr>
-                    <tr>
-                        <td>#2</td>
-                        <td>Image</td>
-                        <td>png</td>
-                        <td>10/11/2022</td>
-                        <td><a href="" class="btn btn-primary">Download</a></td>
-                        <td>
-                            <form action="#" method="post">
-                                <input type="hidden" name="id" value="fileid">
-                                <input type="submit" class="btn btn-warning" value="Delete">
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#3</td>
-                        <td>Image</td>
-                        <td>png</td>
-                        <td>10/11/2022</td>
-                        <td><a href="" class="btn btn-primary">Download</a></td>
-                        <td>
-                            <form action="#" method="post">
-                                <input type="hidden" name="id" value="fileid">
-                                <input type="submit" class="btn btn-warning" value="Delete">
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#3</td>
-                        <td>Image</td>
-                        <td>png</td>
-                        <td>10/11/2022</td>
-                        <td><a href="" class="btn btn-primary">Download</a></td>
-                        <td>
-                            <form action="#" method="post">
-                                <input type="hidden" name="id" value="fileid">
-                                <input type="submit" class="btn btn-warning" value="Delete">
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#3</td>
-                        <td>Image</td>
-                        <td>png</td>
-                        <td>10/11/2022</td>
-                        <td><a href="" class="btn btn-primary">Download</a></td>
-                        <td>
-                            <form action="#" method="post">
-                                <input type="hidden" name="id" value="fileid">
-                                <input type="submit" class="btn btn-warning" value="Delete">
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#3</td>
-                        <td>Image</td>
-                        <td>png</td>
-                        <td>10/11/2022</td>
-                        <td><a href="" class="btn btn-primary">Download</a></td>
-                        <td>
-                            <form action="#" method="post">
-                                <input type="hidden" name="id" value="fileid">
-                                <input type="submit" class="btn btn-warning" value="Delete">
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#3</td>
-                        <td>Image</td>
-                        <td>png</td>
-                        <td>10/11/2022</td>
-                        <td><a href="" class="btn btn-primary">Download</a></td>
-                        <td>
-                            <form action="#" method="post">
-                                <input type="hidden" name="id" value="fileid">
-                                <input type="submit" class="btn btn-warning" value="Delete">
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#3</td>
-                        <td>Image</td>
-                        <td>png</td>
-                        <td>10/11/2022</td>
-                        <td><a href="" class="btn btn-primary">Download</a></td>
-                        <td>
-                            <form action="#" method="post">
-                                <input type="hidden" name="id" value="fileid">
-                                <input type="submit" class="btn btn-warning" value="Delete">
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#3</td>
-                        <td>Image</td>
-                        <td>png</td>
-                        <td>10/11/2022</td>
-                        <td><a href="" class="btn btn-primary">Download</a></td>
-                        <td>
-                            <form action="#" method="post">
-                                <input type="hidden" name="id" value="fileid">
-                                <input type="submit" class="btn btn-warning" value="Delete">
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>#3</td>
-                        <td>Image</td>
-                        <td>png</td>
-                        <td>10/11/2022</td>
-                        <td><a href="" class="btn btn-primary">Download</a></td>
-                        <td>
-                            <form action="#" method="post">
-                                <input type="hidden" name="id" value="fileid">
-                                <input type="submit" class="btn btn-warning" value="Delete">
-                            </form>
-                        </td>
-                    </tr>
+                    {{end}}
                 </tbody>
             </table>
         </section>
+        {{ end }}
     </main>
 </body>
 </html>

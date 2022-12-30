@@ -128,10 +128,41 @@ func Download(c *gin.Context) {
 		return
 	}
 
-	c.FileAttachment("."+file.FileLocation, file.FileName+file.FileExtension)
+	c.FileAttachment("."+file.FileLocation, file.FileName+"."+file.FileExtension)
 }
 
 func Dashboard(c *gin.Context) {
+	var files []models.File
 
-	c.HTML(http.StatusOK, "dashboard.html", gin.H{})
+	// database setup
+	dbname := os.Getenv("DB_NAME")
+	coll := initializers.DB.Database(dbname).Collection("files")
+
+	// get user info
+	rawuser, exist := c.Get("user")
+	if !exist {
+		c.Redirect(http.StatusSeeOther, "/")
+	}
+
+	userAccount := rawuser.(models.Account)
+
+	// find files in database
+	filter := bson.D{primitive.E{Key: "user", Value: userAccount.ID}}
+	cursor, err := coll.Find(context.TODO(), filter)
+	if err != nil {
+		c.HTML(http.StatusOK, "dashboard.html", gin.H{})
+	}
+
+	err = cursor.All(context.TODO(), &files)
+	if err != nil {
+		c.HTML(http.StatusOK, "dashboard.html", gin.H{})
+	}
+
+	if len(files) == 0 {
+		c.HTML(http.StatusOK, "dashboard.html", gin.H{})
+	}
+
+	c.HTML(http.StatusOK, "dashboard.html", gin.H{
+		"files": files,
+	})
 }
