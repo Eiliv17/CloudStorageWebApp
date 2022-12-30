@@ -207,6 +207,7 @@ func Dashboard(c *gin.Context) {
 	rawuser, exist := c.Get("user")
 	if !exist {
 		c.Redirect(http.StatusSeeOther, "/")
+		return
 	}
 
 	userAccount := rawuser.(models.Account)
@@ -216,15 +217,18 @@ func Dashboard(c *gin.Context) {
 	cursor, err := coll.Find(context.TODO(), filter)
 	if err != nil {
 		c.HTML(http.StatusOK, "dashboard.html", gin.H{})
+		return
 	}
 
 	err = cursor.All(context.TODO(), &files)
 	if err != nil {
 		c.HTML(http.StatusOK, "dashboard.html", gin.H{})
+		return
 	}
 
 	if len(files) == 0 {
 		c.HTML(http.StatusOK, "dashboard.html", gin.H{})
+		return
 	}
 
 	c.HTML(http.StatusOK, "dashboard.html", gin.H{
