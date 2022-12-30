@@ -56,8 +56,8 @@
                         <td>{{ $val.InsertionDate.Format "2006-01-02" }}</td>
                         <td><a href="/file/{{ $val.FileID.Hex }}" class="btn btn-primary">Download</a></td>
                         <td>
-                            <form action="#" method="post">
-                                <input type="hidden" name="id" value="fileid">
+                            <form action="/file/delete" method="post">
+                                <input type="hidden" name="id" value="{{ $val.FileID.Hex }}">
                                 <input type="submit" class="btn btn-warning" value="Delete">
                             </form>
                         </td>

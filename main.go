@@ -49,6 +49,8 @@ func main() {
 		rfile.GET("/:id", middlewares.RequireAuth, controllers.Download)
 
 		rfile.POST("", middlewares.RequireAuth, controllers.Upload)
+
+		rfile.POST("/delete", middlewares.RequireAuth, controllers.Delete)
 	}
 
 	r.GET("/dashboard", middlewares.RequireAuth, controllers.Dashboard)

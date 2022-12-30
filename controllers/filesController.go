@@ -131,6 +131,71 @@ func Download(c *gin.Context) {
 	c.FileAttachment("."+file.FileLocation, file.FileName+"."+file.FileExtension)
 }
 
+func Delete(c *gin.Context) {
+	// database setup
+	dbname := os.Getenv("DB_NAME")
+	coll := initializers.DB.Database(dbname).Collection("files")
+
+	// request body struct
+	body := struct {
+		DeleteID string `form:"id" binding:"required"`
+	}{}
+
+	// get deletion id from req body
+	err := c.ShouldBind(&body)
+	if err != nil {
+		c.HTML(http.StatusBadRequest, "dashboard.html", gin.H{
+			"error": "Internal server error",
+		})
+		return
+	}
+
+	// get user info
+	rawuser, exist := c.Get("user")
+	if !exist {
+		c.Redirect(http.StatusSeeOther, "/")
+	}
+
+	userAccount := rawuser.(models.Account)
+
+	// look for file id
+	objID, err := primitive.ObjectIDFromHex(body.DeleteID)
+	if err != nil {
+		c.HTML(http.StatusBadRequest, "dashboard.html", gin.H{
+			"error": "Invalid File ID",
+		})
+		return
+	}
+
+	fileFilter := bson.D{primitive.E{Key: "_id", Value: objID}}
+	result := coll.FindOne(context.TODO(), fileFilter)
+
+	// decode result
+	var file models.File
+	err = result.Decode(&file)
+	if err != nil {
+		c.HTML(http.StatusBadRequest, "dashboard.html", gin.H{
+			"error": "File not found",
+		})
+		return
+	}
+
+	if !(file.User == userAccount.ID) {
+		c.HTML(http.StatusBadRequest, "dashboard.html", gin.H{
+			"error": "File access not authorized",
+		})
+		return
+	}
+
+	// removes file from its location
+	os.Remove("." + file.FileLocation)
+
+	// removes file from database
+	coll.DeleteOne(context.TODO(), fileFilter)
+
+	c.Redirect(http.StatusFound, "/dashboard")
+}
+
 func Dashboard(c *gin.Context) {
 	var files []models.File
 
