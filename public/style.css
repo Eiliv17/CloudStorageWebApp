@@ -72,7 +72,11 @@ h3 {
 
 body{
     background: var(--color-background);
-    margin: 0;
+    display: grid;
+
+    height: 100vh;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: 80px 1fr;
 }
 
 
@@ -168,11 +172,12 @@ input{
 /* Header */
 
 .header {
+    grid-column: 1 / -1;
+    grid-row: 1;
+
     padding: 1rem 2rem;
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
-    position: fixed;
     width: 100%;
     background: var(--color-background);
 }
@@ -180,18 +185,22 @@ input{
 .logo {
     font-size: 3rem;
     margin: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.nav-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .nav-link {
     display: inline-block;
-    padding: 1rem;
     font-weight: 500;
+    padding: 1rem;
     transition: border-bottom 0.2s linear, color 0.2s linear;
 }
 
@@ -204,8 +213,9 @@ input{
 /* Main */
 
 .main{
+    grid-column: 1 / -1;
+    grid-row: 2;
     padding: 2rem;
-    height: 100vh;
 }
 
 /* Hero section */
